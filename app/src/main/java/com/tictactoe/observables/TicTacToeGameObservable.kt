@@ -18,63 +18,93 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
             when (view.id) {
 
                 R.id.firstRowFirstCol -> {
-                    viewModel.fistRowFistColumn.set(viewModel.currentPlayer.get())
-                    viewModel.fistRowFistColumn.notifyChange()
+                    if (isPositionAvailable(viewModel.fistRowFistColumn.get())) {
+                        viewModel.fistRowFistColumn.set(viewModel.currentPlayer.get())
+
+                    }
                 }
                 R.id.firstRowSecondCol -> {
-                    viewModel.fistRowSecondColumn.set(viewModel.currentPlayer.get())
-                    viewModel.fistRowSecondColumn.notifyChange()
+                    if (isPositionAvailable(viewModel.fistRowSecondColumn.get())) {
+                        viewModel.fistRowSecondColumn.set(viewModel.currentPlayer.get())
+
+                    }
                 }
                 R.id.firstRowThirdCol -> {
-                    viewModel.fistRowThirdColumn.set(viewModel.currentPlayer.get())
-                    viewModel.fistRowThirdColumn.notifyChange()
+
+                    if (isPositionAvailable(viewModel.fistRowThirdColumn.get())) {
+                        viewModel.fistRowThirdColumn.set(viewModel.currentPlayer.get())
+                    }
+
                 }
                 R.id.secondRowFirstCol -> {
-                    viewModel.secondRowFirstColumn.set(viewModel.currentPlayer.get())
-                    viewModel.secondRowFirstColumn.notifyChange()
+                    if (isPositionAvailable(viewModel.secondRowFirstColumn.get())) {
+                        viewModel.secondRowFirstColumn.set(viewModel.currentPlayer.get())
+                    }
+
                 }
                 R.id.secondRowSecondCol -> {
-                    viewModel.secondRowSecondColumn.set(viewModel.currentPlayer.get())
-                    viewModel.secondRowSecondColumn.notifyChange()
+                    if (isPositionAvailable(viewModel.secondRowSecondColumn.get())) {
+                        viewModel.secondRowSecondColumn.set(viewModel.currentPlayer.get())
+                    }
+
                 }
                 R.id.secondRowThirdCol -> {
-                    viewModel.secondRowThirdColumn.set(viewModel.currentPlayer.get())
-                    viewModel.secondRowThirdColumn.notifyChange()
+                    if (isPositionAvailable(viewModel.secondRowThirdColumn.get())) {
+                        viewModel.secondRowThirdColumn.set(viewModel.currentPlayer.get())
+                    }
+
                 }
                 R.id.thirdRowFirstCol -> {
-                    viewModel.thirdRowFirstColumn.set(viewModel.currentPlayer.get())
-                    viewModel.thirdRowFirstColumn.notifyChange()
+
+                    if (isPositionAvailable(viewModel.thirdRowFirstColumn.get())) {
+                        viewModel.thirdRowFirstColumn.set(viewModel.currentPlayer.get())
+                    }
+
                 }
                 R.id.thirdRowSecondCol -> {
-                    viewModel.thirdRowSecondColumn.set(viewModel.currentPlayer.get())
-                    viewModel.thirdRowSecondColumn.notifyChange()
+                    if (isPositionAvailable(viewModel.thirdRowSecondColumn.get())) {
+                        viewModel.thirdRowSecondColumn.set(viewModel.currentPlayer.get())
+                    }
+
                 }
                 R.id.thirdRowThirdCol -> {
-                    viewModel.thirdRowThirdColumn.set(viewModel.currentPlayer.get())
-                    viewModel.fistRowThirdColumn.notifyChange()
+                    if (isPositionAvailable(viewModel.thirdRowThirdColumn.get())) {
+                        viewModel.thirdRowThirdColumn.set(viewModel.currentPlayer.get())
+                    }
+
                 }
 
             }
             changePlayer()
+            viewModel.notifyChange()
             if (checkForWin() == true) {
+                resetGame()
                 Toast.makeText(AppContext.appContext, "Some one won the game", Toast.LENGTH_LONG).show()
             }
         } else {
+            resetGame()
             Toast.makeText(AppContext.appContext, "Board is Full", Toast.LENGTH_LONG).show()
         }
 
 
     }
 
+    private fun isPositionAvailable(char: Char?): Boolean = char == '-'
+
+
+    private fun resetGame() {
+
+        viewModel.init()
+    }
+
     private fun changePlayer() {
 
         if (viewModel.currentPlayer.get() == 'X') {
             viewModel.currentPlayer.set('O')
-            viewModel.currentPlayer.notifyChange()
         } else {
             viewModel.currentPlayer.set('X')
-            viewModel.currentPlayer.notifyChange()
         }
+        viewModel.notifyChange()
     }
 
     private fun checkRowCol(c1: Char?, c2: Char?, c3: Char?): Boolean {
