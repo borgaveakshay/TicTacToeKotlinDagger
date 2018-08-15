@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/lib/com.tictactoe">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="ticTacToeModel"
+            type="com.tictactoe.viewmodel.TicTacToeViewModel" />
+
+        <variable
+            name="ticTacToeObserver"
+            type="com.tictactoe.observables.TicTacToeGameObservable" />
+
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,32 +31,38 @@
             android:weightSum="3">
 
             <TextView
-                android:id="@+id/firstColFirstRow"
+                android:id="@+id/firstRowFirstCol"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/background_border"
+                android:gravity="center"
+                android:text="@{String.valueOf(ticTacToeModel.fistRowFistColumn)}"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="@dimen/text_size" />
 
 
             <TextView
-                android:id="@+id/firstColSecondRow"
+                android:id="@+id/firstRowSecondCol"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/background_border"
+                android:gravity="center"
+                android:text="@{String.valueOf(ticTacToeModel.fistRowSecondColumn)}"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="@dimen/text_size" />
 
             <TextView
-                android:id="@+id/firstColThirdRow"
+                android:id="@+id/firstRowThirdCol"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/background_border"
+                android:gravity="center"
+                android:text="@{String.valueOf(ticTacToeModel.fistRowThirdColumn)}"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="@dimen/text_size" />
 
 
         </LinearLayout>
@@ -56,32 +77,38 @@
             android:weightSum="3">
 
             <TextView
-                android:id="@+id/secondColFirstRow"
+                android:id="@+id/secondRowFirstCol"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/background_border"
+                android:gravity="center"
+                android:text="@{String.valueOf(ticTacToeModel.secondRowFirstColumn)}"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="@dimen/text_size" />
 
 
             <TextView
-                android:id="@+id/secondColSecondRow"
+                android:id="@+id/secondRowSecondCol"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/background_border"
+                android:gravity="center"
+                android:text="@{String.valueOf(ticTacToeModel.secondRowSecondColumn)}"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="@dimen/text_size" />
 
             <TextView
-                android:id="@+id/secondColThirdRow"
+                android:id="@+id/secondRowThirdCol"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/background_border"
+                android:gravity="center"
+                android:text="@{String.valueOf(ticTacToeModel.secondRowThirdColumn)}"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="@dimen/text_size" />
 
         </LinearLayout>
 
@@ -95,31 +122,37 @@
             android:weightSum="3">
 
             <TextView
-                android:id="@+id/thirdColFirstRow"
+                android:id="@+id/thirdRowFirstCol"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/background_border"
+                android:gravity="center"
+                android:text="@{String.valueOf(ticTacToeModel.thirdRowFirstColumn)}"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="@dimen/text_size" />
 
             <TextView
-                android:id="@+id/thirdColSecondRow"
+                android:id="@+id/thirdRowSecondCol"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/background_border"
+                android:gravity="center"
+                android:text="@{String.valueOf(ticTacToeModel.thirdRowSecondColumn)}"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="@dimen/text_size" />
 
             <TextView
-                android:id="@+id/thirdColThirdRow"
+                android:id="@+id/thirdRowThirdCol"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/background_border"
+                android:gravity="center"
+                android:text="@{String.valueOf(ticTacToeModel.thirdRowThirdColumn)}"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="@dimen/text_size" />
 
         </LinearLayout>
 
