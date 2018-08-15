@@ -1,6 +1,8 @@
 package com.tictactoe.observables
 
 import android.databinding.BindingAdapter
+import android.databinding.InverseMethod
+import android.databinding.ObservableField
 import android.view.View
 import android.widget.Toast
 import com.tictactoe.R
@@ -15,36 +17,67 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
         if (!checkIsBoardFull()) {
             when (view.id) {
 
-                R.id.firstRowFirstCol -> viewModel.fistRowFistColumn = viewModel.currentPlayer
-                R.id.firstRowSecondCol -> viewModel.fistRowSecondColumn = viewModel.currentPlayer
-                R.id.firstRowThirdCol -> viewModel.fistRowThirdColumn = viewModel.currentPlayer
-                R.id.secondRowFirstCol -> viewModel.secondRowFirstColumn = viewModel.currentPlayer
-                R.id.secondRowSecondCol -> viewModel.secondRowSecondColumn = viewModel.currentPlayer
-                R.id.secondRowThirdCol -> viewModel.secondRowThirdColumn = viewModel.currentPlayer
-                R.id.thirdRowFirstCol -> viewModel.thirdRowFirstColumn = viewModel.currentPlayer
-                R.id.thirdRowSecondCol -> viewModel.thirdRowSecondColumn = viewModel.currentPlayer
-                R.id.thirdRowThirdCol -> viewModel.thirdRowThirdColumn = viewModel.currentPlayer
+                R.id.firstRowFirstCol -> {
+                    viewModel.fistRowFistColumn.set(viewModel.currentPlayer.get())
+                    viewModel.fistRowFistColumn.notifyChange()
+                }
+                R.id.firstRowSecondCol -> {
+                    viewModel.fistRowSecondColumn.set(viewModel.currentPlayer.get())
+                    viewModel.fistRowSecondColumn.notifyChange()
+                }
+                R.id.firstRowThirdCol -> {
+                    viewModel.fistRowThirdColumn.set(viewModel.currentPlayer.get())
+                    viewModel.fistRowThirdColumn.notifyChange()
+                }
+                R.id.secondRowFirstCol -> {
+                    viewModel.secondRowFirstColumn.set(viewModel.currentPlayer.get())
+                    viewModel.secondRowFirstColumn.notifyChange()
+                }
+                R.id.secondRowSecondCol -> {
+                    viewModel.secondRowSecondColumn.set(viewModel.currentPlayer.get())
+                    viewModel.secondRowSecondColumn.notifyChange()
+                }
+                R.id.secondRowThirdCol -> {
+                    viewModel.secondRowThirdColumn.set(viewModel.currentPlayer.get())
+                    viewModel.secondRowThirdColumn.notifyChange()
+                }
+                R.id.thirdRowFirstCol -> {
+                    viewModel.thirdRowFirstColumn.set(viewModel.currentPlayer.get())
+                    viewModel.thirdRowFirstColumn.notifyChange()
+                }
+                R.id.thirdRowSecondCol -> {
+                    viewModel.thirdRowSecondColumn.set(viewModel.currentPlayer.get())
+                    viewModel.thirdRowSecondColumn.notifyChange()
+                }
+                R.id.thirdRowThirdCol -> {
+                    viewModel.thirdRowThirdColumn.set(viewModel.currentPlayer.get())
+                    viewModel.fistRowThirdColumn.notifyChange()
+                }
 
             }
             changePlayer()
             if (checkForWin() == true) {
                 Toast.makeText(AppContext.appContext, "Some one won the game", Toast.LENGTH_LONG).show()
             }
-        } else
+        } else {
             Toast.makeText(AppContext.appContext, "Board is Full", Toast.LENGTH_LONG).show()
+        }
 
 
     }
 
     private fun changePlayer() {
 
-        if (viewModel.currentPlayer == 'X')
-            viewModel.currentPlayer = 'O'
-        else
-            viewModel.currentPlayer = 'X'
+        if (viewModel.currentPlayer.get() == 'X') {
+            viewModel.currentPlayer.set('O')
+            viewModel.currentPlayer.notifyChange()
+        } else {
+            viewModel.currentPlayer.set('X')
+            viewModel.currentPlayer.notifyChange()
+        }
     }
 
-    private fun checkRowCol(c1: Char, c2: Char, c3: Char): Boolean {
+    private fun checkRowCol(c1: Char?, c2: Char?, c3: Char?): Boolean {
 
         return (c1 != '-' && c1 == c2 && c2 == c3)
     }
@@ -55,17 +88,17 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
     private fun checkForRowsWin(): Boolean {
         var match = false
 
-        if (checkRowCol(viewModel.fistRowFistColumn
-                        , viewModel.fistRowSecondColumn
-                        , viewModel.fistRowThirdColumn))
+        if (checkRowCol(viewModel.fistRowFistColumn.get()
+                        , viewModel.fistRowSecondColumn.get()
+                        , viewModel.fistRowThirdColumn.get()))
             match = true
-        else if (checkRowCol(viewModel.secondRowFirstColumn
-                        , viewModel.secondRowSecondColumn
-                        , viewModel.secondRowThirdColumn))
+        else if (checkRowCol(viewModel.secondRowFirstColumn.get()
+                        , viewModel.secondRowSecondColumn.get()
+                        , viewModel.secondRowThirdColumn.get()))
             match = true
-        else if (checkRowCol(viewModel.thirdRowFirstColumn
-                        , viewModel.thirdRowSecondColumn
-                        , viewModel.thirdRowThirdColumn))
+        else if (checkRowCol(viewModel.thirdRowFirstColumn.get()
+                        , viewModel.thirdRowSecondColumn.get()
+                        , viewModel.thirdRowThirdColumn.get()))
             match = true
 
         return match
@@ -74,17 +107,17 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
     private fun checkForColWin(): Boolean {
         var match = false
 
-        if (checkRowCol(viewModel.fistRowFistColumn
-                        , viewModel.secondRowFirstColumn
-                        , viewModel.thirdRowFirstColumn))
+        if (checkRowCol(viewModel.fistRowFistColumn.get()
+                        , viewModel.secondRowFirstColumn.get()
+                        , viewModel.thirdRowFirstColumn.get()))
             match = true
-        else if (checkRowCol(viewModel.fistRowSecondColumn
-                        , viewModel.secondRowSecondColumn
-                        , viewModel.thirdRowSecondColumn))
+        else if (checkRowCol(viewModel.fistRowSecondColumn.get()
+                        , viewModel.secondRowSecondColumn.get()
+                        , viewModel.thirdRowSecondColumn.get()))
             match = true
-        else if (checkRowCol(viewModel.fistRowThirdColumn
-                        , viewModel.secondRowThirdColumn
-                        , viewModel.thirdRowThirdColumn))
+        else if (checkRowCol(viewModel.fistRowThirdColumn.get()
+                        , viewModel.secondRowThirdColumn.get()
+                        , viewModel.thirdRowThirdColumn.get()))
             match = true
 
         return match
@@ -93,13 +126,13 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
     private fun checkForDiagonalWin(): Boolean {
         var match = false
 
-        if (checkRowCol(viewModel.fistRowFistColumn
-                        , viewModel.secondRowSecondColumn
-                        , viewModel.thirdRowThirdColumn))
+        if (checkRowCol(viewModel.fistRowFistColumn.get()
+                        , viewModel.secondRowSecondColumn.get()
+                        , viewModel.thirdRowThirdColumn.get()))
             match = true
-        else if (checkRowCol(viewModel.fistRowThirdColumn
-                        , viewModel.secondRowSecondColumn
-                        , viewModel.thirdRowFirstColumn))
+        else if (checkRowCol(viewModel.fistRowThirdColumn.get()
+                        , viewModel.secondRowSecondColumn.get()
+                        , viewModel.thirdRowFirstColumn.get()))
             match = true
 
         return match
@@ -107,15 +140,15 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
 
     private fun checkIsBoardFull(): Boolean {
 
-        if (viewModel.fistRowFistColumn != '-'
-                && viewModel.fistRowSecondColumn != '-'
-                && viewModel.fistRowThirdColumn != '-'
-                && viewModel.secondRowFirstColumn != '-'
-                && viewModel.secondRowSecondColumn != '-'
-                && viewModel.secondRowThirdColumn != '-'
-                && viewModel.thirdRowFirstColumn != '-'
-                && viewModel.thirdRowSecondColumn != '-'
-                && viewModel.thirdRowThirdColumn != '-')
+        if (viewModel.fistRowFistColumn.get() != '-'
+                && viewModel.fistRowSecondColumn.get() != '-'
+                && viewModel.fistRowThirdColumn.get() != '-'
+                && viewModel.secondRowFirstColumn.get() != '-'
+                && viewModel.secondRowSecondColumn.get() != '-'
+                && viewModel.secondRowThirdColumn.get() != '-'
+                && viewModel.thirdRowFirstColumn.get() != '-'
+                && viewModel.thirdRowSecondColumn.get() != '-'
+                && viewModel.thirdRowThirdColumn.get() != '-')
             return true
 
         return false

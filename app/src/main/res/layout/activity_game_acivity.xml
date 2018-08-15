@@ -37,7 +37,7 @@
                 android:background="@drawable/background_border"
                 android:gravity="center"
                 android:onClick="@{(v) -> ticTacToeObserver.onClickAction(v)}"
-                android:text="@{String.valueOf(ticTacToeModel.fistRowFistColumn)}"
+                android:text="@={`` +ticTacToeModel.fistRowFistColumn.get()}"
                 android:textColor="#000"
                 android:textSize="@dimen/text_size" />
 
@@ -50,7 +50,7 @@
                 android:background="@drawable/background_border"
                 android:gravity="center"
                 android:onClick="@{(v) -> ticTacToeObserver.onClickAction(v)}"
-                android:text="@{String.valueOf(ticTacToeModel.fistRowSecondColumn)}"
+                android:text="@={`` +ticTacToeModel.fistRowSecondColumn.get()}"
                 android:textColor="#000"
                 android:textSize="@dimen/text_size" />
 
@@ -62,7 +62,7 @@
                 android:background="@drawable/background_border"
                 android:gravity="center"
                 android:onClick="@{(v) -> ticTacToeObserver.onClickAction(v)}"
-                android:text="@{String.valueOf(ticTacToeModel.fistRowThirdColumn)}"
+                android:text="@={`` +ticTacToeModel.fistRowThirdColumn.get()}"
                 android:textColor="#000"
                 android:textSize="@dimen/text_size" />
 
@@ -86,7 +86,7 @@
                 android:background="@drawable/background_border"
                 android:gravity="center"
                 android:onClick="@{(v) -> ticTacToeObserver.onClickAction(v)}"
-                android:text="@{String.valueOf(ticTacToeModel.secondRowFirstColumn)}"
+                android:text="@={`` +ticTacToeModel.secondRowFirstColumn.get()}"
                 android:textColor="#000"
                 android:textSize="@dimen/text_size" />
 
@@ -99,7 +99,7 @@
                 android:background="@drawable/background_border"
                 android:gravity="center"
                 android:onClick="@{(v) -> ticTacToeObserver.onClickAction(v)}"
-                android:text="@{String.valueOf(ticTacToeModel.secondRowSecondColumn)}"
+                android:text="@={`` +ticTacToeModel.secondRowSecondColumn.get()}"
                 android:textColor="#000"
                 android:textSize="@dimen/text_size" />
 
@@ -111,7 +111,7 @@
                 android:background="@drawable/background_border"
                 android:gravity="center"
                 android:onClick="@{(v) -> ticTacToeObserver.onClickAction(v)}"
-                android:text="@{String.valueOf(ticTacToeModel.secondRowThirdColumn)}"
+                android:text="@={`` +ticTacToeModel.secondRowThirdColumn.get()}"
                 android:textColor="#000"
                 android:textSize="@dimen/text_size" />
 
@@ -134,7 +134,7 @@
                 android:background="@drawable/background_border"
                 android:gravity="center"
                 android:onClick="@{(v) -> ticTacToeObserver.onClickAction(v)}"
-                android:text="@{String.valueOf(ticTacToeModel.thirdRowFirstColumn)}"
+                android:text="@={`` +ticTacToeModel.thirdRowFirstColumn.get()}"
                 android:textColor="#000"
                 android:textSize="@dimen/text_size" />
 
@@ -146,7 +146,7 @@
                 android:background="@drawable/background_border"
                 android:gravity="center"
                 android:onClick="@{(v) -> ticTacToeObserver.onClickAction(v)}"
-                android:text="@{String.valueOf(ticTacToeModel.thirdRowSecondColumn)}"
+                android:text="@={`` +ticTacToeModel.thirdRowSecondColumn.get()}"
                 android:textColor="#000"
                 android:textSize="@dimen/text_size" />
 
@@ -158,7 +158,7 @@
                 android:background="@drawable/background_border"
                 android:gravity="center"
                 android:onClick="@{(v) -> ticTacToeObserver.onClickAction(v)}"
-                android:text="@{String.valueOf(ticTacToeModel.thirdRowThirdColumn)}"
+                android:text="@{`` +ticTacToeModel.thirdRowThirdColumn.get()}"
                 android:textColor="#000"
                 android:textSize="@dimen/text_size" />
 
