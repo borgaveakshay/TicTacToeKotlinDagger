@@ -28,6 +28,6 @@ class GameAcivity : AppCompatActivity() {
 
         mAcivityBinding.ticTacToeModel = mTicTacToeComponent.getViewModel()
         mAcivityBinding.ticTacToeObserver = mTicTacToeComponent.getTicTacToeObservable()
-        
+
     }
 }
