@@ -13,6 +13,10 @@
             name="ticTacToeObserver"
             type="com.tictactoe.observables.TicTacToeGameObservable" />
 
+        <variable
+            name="toolBar"
+            type="com.tictactoe.viewmodel.ToolBarViewModel" />
+
     </data>
 
     <LinearLayout
@@ -21,7 +25,52 @@
         android:orientation="vertical"
         android:weightSum="3">
 
-        <include layout="@layout/toolbar_layout"/>
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar_hieght"
+            android:background="@color/colorPrimaryDark">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="@={toolBar.player1}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tool_bar_left_text_size"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="@={toolBar.currentPlayer}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tool_bar_center_text_size"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/tool_bar_right_margin_text"
+                    android:text="@={toolBar.player2}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tool_bar_right_text_size"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
         <LinearLayout
             android:id="@+id/firstRow"
             android:layout_width="match_parent"
@@ -38,7 +87,7 @@
                 android:background="@drawable/background_border"
                 android:gravity="center"
                 android:onClick="@{(v) -> ticTacToeObserver.onClickAction(v)}"
-                android:text="@={`` +ticTacToeModel.fistRowFistColumn}"
+                android:text="@={``+ticTacToeModel.fistRowFistColumn}"
                 android:textColor="#000"
                 android:textSize="@dimen/text_size" />
 

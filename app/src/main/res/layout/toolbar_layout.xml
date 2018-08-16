@@ -25,10 +25,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:text="@={toolBar.leftString}"
+                android:text="@={toolBar.player1}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/tool_bar_left_text_size"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
 
             <TextView
@@ -36,10 +36,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="@={toolBar.centerString}"
+                android:text="@={toolBar.currentPlayer}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/tool_bar_center_text_size"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
 
             <TextView
@@ -47,11 +47,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="@={toolBar.rightString}"
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:layout_marginRight="@dimen/tool_bar_right_margin_text"
-                android:textSize="@dimen/tool_bar_right_text_size" />
+                android:text="@={toolBar.player2}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tool_bar_right_text_size"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 

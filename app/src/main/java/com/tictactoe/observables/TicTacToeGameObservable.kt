@@ -5,9 +5,12 @@ import android.widget.Toast
 import com.tictactoe.R
 import com.tictactoe.util.Util
 import com.tictactoe.viewmodel.TicTacToeViewModel
+import com.tictactoe.viewmodel.ToolBarViewModel
 import com.tictactoe.views.GameAcivity
 
-class TicTacToeGameObservable(val viewModel: TicTacToeViewModel, val activity: GameAcivity) {
+class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
+                              , val activity: GameAcivity
+                              , val toolBarViewModel: ToolBarViewModel) {
 
 
     fun onClickAction(view: View) {
@@ -123,7 +126,14 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel, val activity: G
         } else {
             viewModel.currentPlayer.set('X')
         }
+
+        if (toolBarViewModel.currentPlayer.get().equals(toolBarViewModel.player1.get())) {
+            toolBarViewModel.currentPlayer.set(toolBarViewModel.player2.get())
+        } else {
+            toolBarViewModel.currentPlayer.set(toolBarViewModel.player1.get())
+        }
         viewModel.notifyChange()
+        toolBarViewModel.notifyChange()
     }
 
     private fun checkRowCol(c1: Char?, c2: Char?, c3: Char?): Boolean {
