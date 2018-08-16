@@ -1,2 +1,2 @@
-json_key_file("C:\Users\akshay.borgave\Downloads\api-6601028951954639200-413315-0857248f0980.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+json_key_file(".\api-6601028951954639200-413315-0857248f0980.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
 package_name("com.tictactoe") # e.g. com.krausefx.app
