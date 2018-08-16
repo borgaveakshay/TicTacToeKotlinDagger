@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModel
 import android.databinding.Observable
 import android.databinding.ObservableField
 import android.databinding.PropertyChangeRegistry
+import com.tictactoe.dependencies.components.DaggerTicTacToeViewModelComponent
+import com.tictactoe.dependencies.components.TicTacToeViewModelComponent
 import javax.inject.Inject
 
 data class TicTacToeViewModel constructor(var currentPlayer: ObservableField<Char>
@@ -16,8 +18,11 @@ data class TicTacToeViewModel constructor(var currentPlayer: ObservableField<Cha
                                           , var thirdRowFirstColumn: ObservableField<Char>
                                           , var thirdRowSecondColumn: ObservableField<Char>
                                           , var thirdRowThirdColumn: ObservableField<Char>) : Observable, ViewModel() {
-    @Inject
-    lateinit var callbacks: PropertyChangeRegistry
+
+    private val mTicTacToeViewModelComponent: TicTacToeViewModelComponent = DaggerTicTacToeViewModelComponent.builder().build()
+
+    private val callbacks: PropertyChangeRegistry = mTicTacToeViewModelComponent.getPropertyChangeRegistry()
+
 
     @Inject constructor() : this(ObservableField('X')
             , ObservableField('-')

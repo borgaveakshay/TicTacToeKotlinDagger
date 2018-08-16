@@ -24,7 +24,6 @@ class GameAcivity : AppCompatActivity() {
 
         mAcivityBinding = DataBindingUtil.setContentView(this, R.layout.activity_game_acivity)
 
-        mTicTacToeComponent.getViewModel().callbacks = mTicTacToeComponent.getPropertyChangeRegistry()
         mAcivityBinding.ticTacToeModel = mTicTacToeComponent.getViewModel()
         mAcivityBinding.ticTacToeObserver = mTicTacToeComponent.getTicTacToeObservable()
 

@@ -2,7 +2,6 @@ package com.tictactoe.dependencies.modules
 
 
 import android.arch.lifecycle.ViewModelProviders
-import android.databinding.PropertyChangeRegistry
 import com.tictactoe.dependencies.scopes.TicTacToeScope
 import com.tictactoe.observables.TicTacToeGameObservable
 import com.tictactoe.viewmodel.TicTacToeViewModel
@@ -25,8 +24,5 @@ class TicTacToeModule(val activity: GameAcivity) {
     @TicTacToeScope
     fun getTicTacToeObservable(ticTacToeViewModel: TicTacToeViewModel): TicTacToeGameObservable = TicTacToeGameObservable(ticTacToeViewModel)
 
-    @Provides
-    @TicTacToeScope
-    fun getPropertyChangeRegistry(): PropertyChangeRegistry = PropertyChangeRegistry()
 
 }
