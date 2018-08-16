@@ -3,10 +3,11 @@ package com.tictactoe.observables
 import android.view.View
 import android.widget.Toast
 import com.tictactoe.R
-import com.tictactoe.Util.AppContext
+import com.tictactoe.util.Util
 import com.tictactoe.viewmodel.TicTacToeViewModel
+import com.tictactoe.views.GameAcivity
 
-class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
+class TicTacToeGameObservable(val viewModel: TicTacToeViewModel, val activity: GameAcivity) {
 
 
     fun onClickAction(view: View) {
@@ -17,7 +18,7 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
                 R.id.firstRowFirstCol -> {
                     if (isPositionAvailable(viewModel.fistRowFistColumn.get())) {
                         viewModel.fistRowFistColumn.set(viewModel.currentPlayer.get())
-
+                        flipAnimation(view)
                         changePlayer()
                     }
 
@@ -26,6 +27,7 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
                     if (isPositionAvailable(viewModel.fistRowSecondColumn.get())) {
                         viewModel.fistRowSecondColumn.set(viewModel.currentPlayer.get())
                         changePlayer()
+                        flipAnimation(view)
                     }
                 }
                 R.id.firstRowThirdCol -> {
@@ -33,6 +35,7 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
                     if (isPositionAvailable(viewModel.fistRowThirdColumn.get())) {
                         viewModel.fistRowThirdColumn.set(viewModel.currentPlayer.get())
                         changePlayer()
+                        flipAnimation(view)
                     }
 
                 }
@@ -40,6 +43,7 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
                     if (isPositionAvailable(viewModel.secondRowFirstColumn.get())) {
                         viewModel.secondRowFirstColumn.set(viewModel.currentPlayer.get())
                         changePlayer()
+                        flipAnimation(view)
                     }
 
                 }
@@ -47,6 +51,7 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
                     if (isPositionAvailable(viewModel.secondRowSecondColumn.get())) {
                         viewModel.secondRowSecondColumn.set(viewModel.currentPlayer.get())
                         changePlayer()
+                        flipAnimation(view)
                     }
 
                 }
@@ -54,6 +59,7 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
                     if (isPositionAvailable(viewModel.secondRowThirdColumn.get())) {
                         viewModel.secondRowThirdColumn.set(viewModel.currentPlayer.get())
                         changePlayer()
+                        flipAnimation(view)
                     }
 
                 }
@@ -62,6 +68,7 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
                     if (isPositionAvailable(viewModel.thirdRowFirstColumn.get())) {
                         viewModel.thirdRowFirstColumn.set(viewModel.currentPlayer.get())
                         changePlayer()
+                        flipAnimation(view)
                     }
 
                 }
@@ -69,6 +76,7 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
                     if (isPositionAvailable(viewModel.thirdRowSecondColumn.get())) {
                         viewModel.thirdRowSecondColumn.set(viewModel.currentPlayer.get())
                         changePlayer()
+                        flipAnimation(view)
                     }
 
                 }
@@ -76,6 +84,7 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
                     if (isPositionAvailable(viewModel.thirdRowThirdColumn.get())) {
                         viewModel.thirdRowThirdColumn.set(viewModel.currentPlayer.get())
                         changePlayer()
+                        flipAnimation(view)
                     }
 
                 }
@@ -85,14 +94,18 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
             viewModel.notifyChange()
             if (checkForWin()) {
                 resetGame()
-                Toast.makeText(AppContext.appContext, "Some one won the game", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, "Some one won the game", Toast.LENGTH_LONG).show()
             }
         } else {
             resetGame()
-            Toast.makeText(AppContext.appContext, "Board is Full", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, "Board is Full", Toast.LENGTH_LONG).show()
         }
 
 
+    }
+
+    fun flipAnimation(view: View) {
+        Util.annimate(view, activity)
     }
 
     private fun isPositionAvailable(char: Char?): Boolean = char == '-'

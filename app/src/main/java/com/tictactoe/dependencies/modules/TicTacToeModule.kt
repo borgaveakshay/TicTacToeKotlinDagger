@@ -22,7 +22,7 @@ class TicTacToeModule(val activity: GameAcivity) {
 
     @Provides
     @TicTacToeScope
-    fun getTicTacToeObservable(ticTacToeViewModel: TicTacToeViewModel): TicTacToeGameObservable = TicTacToeGameObservable(ticTacToeViewModel)
+    fun getTicTacToeObservable(ticTacToeViewModel: TicTacToeViewModel, activity: GameAcivity): TicTacToeGameObservable = TicTacToeGameObservable(ticTacToeViewModel, activity)
 
 
 }
