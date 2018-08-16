@@ -1,8 +1,5 @@
 package com.tictactoe.observables
 
-import android.databinding.BindingAdapter
-import android.databinding.InverseMethod
-import android.databinding.ObservableField
 import android.view.View
 import android.widget.Toast
 import com.tictactoe.R
@@ -21,36 +18,42 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
                     if (isPositionAvailable(viewModel.fistRowFistColumn.get())) {
                         viewModel.fistRowFistColumn.set(viewModel.currentPlayer.get())
 
+                        changePlayer()
                     }
+
                 }
                 R.id.firstRowSecondCol -> {
                     if (isPositionAvailable(viewModel.fistRowSecondColumn.get())) {
                         viewModel.fistRowSecondColumn.set(viewModel.currentPlayer.get())
-
+                        changePlayer()
                     }
                 }
                 R.id.firstRowThirdCol -> {
 
                     if (isPositionAvailable(viewModel.fistRowThirdColumn.get())) {
                         viewModel.fistRowThirdColumn.set(viewModel.currentPlayer.get())
+                        changePlayer()
                     }
 
                 }
                 R.id.secondRowFirstCol -> {
                     if (isPositionAvailable(viewModel.secondRowFirstColumn.get())) {
                         viewModel.secondRowFirstColumn.set(viewModel.currentPlayer.get())
+                        changePlayer()
                     }
 
                 }
                 R.id.secondRowSecondCol -> {
                     if (isPositionAvailable(viewModel.secondRowSecondColumn.get())) {
                         viewModel.secondRowSecondColumn.set(viewModel.currentPlayer.get())
+                        changePlayer()
                     }
 
                 }
                 R.id.secondRowThirdCol -> {
                     if (isPositionAvailable(viewModel.secondRowThirdColumn.get())) {
                         viewModel.secondRowThirdColumn.set(viewModel.currentPlayer.get())
+                        changePlayer()
                     }
 
                 }
@@ -58,24 +61,27 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
 
                     if (isPositionAvailable(viewModel.thirdRowFirstColumn.get())) {
                         viewModel.thirdRowFirstColumn.set(viewModel.currentPlayer.get())
+                        changePlayer()
                     }
 
                 }
                 R.id.thirdRowSecondCol -> {
                     if (isPositionAvailable(viewModel.thirdRowSecondColumn.get())) {
                         viewModel.thirdRowSecondColumn.set(viewModel.currentPlayer.get())
+                        changePlayer()
                     }
 
                 }
                 R.id.thirdRowThirdCol -> {
                     if (isPositionAvailable(viewModel.thirdRowThirdColumn.get())) {
                         viewModel.thirdRowThirdColumn.set(viewModel.currentPlayer.get())
+                        changePlayer()
                     }
 
                 }
 
             }
-            changePlayer()
+
             viewModel.notifyChange()
             if (checkForWin() == true) {
                 resetGame()
