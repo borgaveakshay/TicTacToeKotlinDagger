@@ -1,12 +1,9 @@
 package com.tictactoe.viewmodel
 
 import android.arch.lifecycle.ViewModel
-import android.databinding.BaseObservable
 import android.databinding.Observable
 import android.databinding.ObservableField
 import android.databinding.PropertyChangeRegistry
-import com.tictactoe.R
-import kotlinx.android.synthetic.main.activity_game_acivity.view.*
 import javax.inject.Inject
 
 data class TicTacToeViewModel constructor(var currentPlayer: ObservableField<Char>
@@ -19,7 +16,8 @@ data class TicTacToeViewModel constructor(var currentPlayer: ObservableField<Cha
                                           , var thirdRowFirstColumn: ObservableField<Char>
                                           , var thirdRowSecondColumn: ObservableField<Char>
                                           , var thirdRowThirdColumn: ObservableField<Char>) : Observable, ViewModel() {
-    private val callbacks: PropertyChangeRegistry by lazy { PropertyChangeRegistry() }
+    @Inject
+    lateinit var callbacks: PropertyChangeRegistry
 
     @Inject constructor() : this(ObservableField('X')
             , ObservableField('-')
@@ -42,6 +40,7 @@ data class TicTacToeViewModel constructor(var currentPlayer: ObservableField<Cha
     }
 
     fun init() {
+        currentPlayer.set('X')
         fistRowFistColumn.set('-')
         fistRowSecondColumn.set('-')
         fistRowThirdColumn.set('-')

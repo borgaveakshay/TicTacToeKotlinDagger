@@ -9,8 +9,6 @@ import com.tictactoe.databinding.ActivityGameAcivityBinding
 import com.tictactoe.dependencies.components.DaggerTicTacToeComponent
 import com.tictactoe.dependencies.components.TicTacToeComponent
 import com.tictactoe.dependencies.modules.TicTacToeModule
-import com.tictactoe.viewmodel.TicTacToeViewModel
-import javax.inject.Inject
 
 class GameAcivity : AppCompatActivity() {
 
@@ -26,6 +24,7 @@ class GameAcivity : AppCompatActivity() {
 
         mAcivityBinding = DataBindingUtil.setContentView(this, R.layout.activity_game_acivity)
 
+        mTicTacToeComponent.getViewModel().callbacks = mTicTacToeComponent.getPropertyChangeRegistry()
         mAcivityBinding.ticTacToeModel = mTicTacToeComponent.getViewModel()
         mAcivityBinding.ticTacToeObserver = mTicTacToeComponent.getTicTacToeObservable()
 

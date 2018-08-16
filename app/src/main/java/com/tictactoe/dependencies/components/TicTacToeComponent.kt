@@ -1,5 +1,6 @@
 package com.tictactoe.dependencies.components
 
+import android.databinding.PropertyChangeRegistry
 import com.tictactoe.dependencies.modules.TicTacToeModule
 import com.tictactoe.dependencies.scopes.TicTacToeScope
 import com.tictactoe.observables.TicTacToeGameObservable
@@ -14,4 +15,5 @@ interface TicTacToeComponent {
     fun getGameActivity(): GameAcivity
     fun getViewModel(): TicTacToeViewModel
     fun getTicTacToeObservable(): TicTacToeGameObservable
+    fun getPropertyChangeRegistry(): PropertyChangeRegistry
 }
