@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.GameAcivity" />
+        <activity
+            android:name=".views.GameAcivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
 
 
         <activity
