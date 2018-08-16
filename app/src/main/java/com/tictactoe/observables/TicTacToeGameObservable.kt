@@ -83,7 +83,7 @@ class TicTacToeGameObservable(var viewModel: TicTacToeViewModel) {
             }
 
             viewModel.notifyChange()
-            if (checkForWin() == true) {
+            if (checkForWin()) {
                 resetGame()
                 Toast.makeText(AppContext.appContext, "Some one won the game", Toast.LENGTH_LONG).show()
             }
