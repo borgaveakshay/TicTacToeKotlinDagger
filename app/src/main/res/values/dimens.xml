@@ -4,7 +4,7 @@
     <dimen name="text_size">70sp</dimen>
     <dimen name="tool_bar_hieght">60dp</dimen>
     <dimen name="tool_bar_left_text_size">20sp</dimen>
-    <dimen name="tool_bar_center_text_size">23sp</dimen>
+    <dimen name="tool_bar_center_text_size">20sp</dimen>
     <dimen name="tool_bar_right_text_size">20sp</dimen>
     <dimen name="tool_bar_right_margin_text">10dp</dimen>
 </resources>

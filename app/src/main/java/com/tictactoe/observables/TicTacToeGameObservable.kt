@@ -117,6 +117,7 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
     private fun resetGame() {
 
         viewModel.init()
+        toolBarViewModel.init()
     }
 
     private fun changePlayer() {

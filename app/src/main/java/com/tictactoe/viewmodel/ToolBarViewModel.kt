@@ -29,9 +29,14 @@ data class ToolBarViewModel(@Bindable var player1: String
 
         mPropertyChangeRegistry.add(callback)
     }
-    
+
     fun notifyChange() {
 
         mPropertyChangeRegistry.notifyCallbacks(this, 0, null)
+    }
+
+    fun init() {
+        currentPlayer = player1
+        notifyChange()
     }
 }

@@ -9,6 +9,7 @@ import com.tictactoe.databinding.ActivityGameAcivityBinding
 import com.tictactoe.dependencies.components.DaggerTicTacToeComponent
 import com.tictactoe.dependencies.components.TicTacToeComponent
 import com.tictactoe.dependencies.modules.TicTacToeModule
+import com.tictactoe.util.Util
 
 class GameAcivity : AppCompatActivity() {
 
@@ -27,6 +28,7 @@ class GameAcivity : AppCompatActivity() {
         mAcivityBinding.ticTacToeModel = mTicTacToeComponent.getViewModel()
         mAcivityBinding.toolBar = mTicTacToeComponent.getToolBarViewModel()
         mAcivityBinding.ticTacToeObserver = mTicTacToeComponent.getTicTacToeObservable()
+        Util.blinkAnimation(mAcivityBinding.currentPlayer, this)
 
     }
 }
