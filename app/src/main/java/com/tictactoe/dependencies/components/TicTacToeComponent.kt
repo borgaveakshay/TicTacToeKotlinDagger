@@ -9,7 +9,7 @@ import com.tictactoe.views.GameAcivity
 import dagger.Component
 
 @TicTacToeScope
-@Component(modules = arrayOf(TicTacToeModule::class), dependencies = [TicTacToeToolBarComponent::class])
+@Component(modules = arrayOf(TicTacToeModule::class))
 interface TicTacToeComponent {
 
     fun getToolBarViewModel():ToolBarViewModel

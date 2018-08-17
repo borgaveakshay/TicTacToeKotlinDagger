@@ -121,19 +121,20 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
 
     private fun changePlayer() {
 
-        if (viewModel.currentPlayer.get() == 'X') {
-            viewModel.currentPlayer.set('O')
-        } else {
-            viewModel.currentPlayer.set('X')
-        }
+        viewModel.currentPlayer.set(when (viewModel.currentPlayer.get()) {
+            'X' -> 'O'
+            'O' -> 'X'
+            else -> 'X'
+        })
 
-        if (toolBarViewModel.currentPlayer.get().equals(toolBarViewModel.player1.get())) {
-            toolBarViewModel.currentPlayer.set(toolBarViewModel.player2.get())
-        } else {
-            toolBarViewModel.currentPlayer.set(toolBarViewModel.player1.get())
-        }
-        viewModel.notifyChange()
+        toolBarViewModel.currentPlayer = (when (toolBarViewModel.currentPlayer) {
+            toolBarViewModel.player1 -> toolBarViewModel.player2
+            toolBarViewModel.player2 -> toolBarViewModel.player1
+            else -> toolBarViewModel.player1
+        })
         toolBarViewModel.notifyChange()
+        viewModel.notifyChange()
+
     }
 
     private fun checkRowCol(c1: Char?, c2: Char?, c3: Char?): Boolean {

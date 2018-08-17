@@ -25,5 +25,8 @@ class TicTacToeModule(val activity: GameAcivity) {
     @TicTacToeScope
     fun getTicTacToeObservable(ticTacToeViewModel: TicTacToeViewModel, toolBarViewModel: ToolBarViewModel, activity: GameAcivity): TicTacToeGameObservable = TicTacToeGameObservable(ticTacToeViewModel, activity, toolBarViewModel)
 
+    @Provides
+    @TicTacToeScope
+    fun getToolBarViewModel(activity: GameAcivity): ToolBarViewModel = ViewModelProviders.of(activity).get(ToolBarViewModel::class.java)
 
 }
