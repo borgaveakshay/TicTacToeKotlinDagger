@@ -18,7 +18,7 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
                               , val toolBarViewModel: ToolBarViewModel) : LifecycleObserver {
 
 
-    lateinit var alertDialog: AlertDialog
+    var alertDialog: AlertDialog? = null
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume() {
         checkForWinAndReset()
@@ -27,9 +27,9 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun onPause() {
 
-        if (alertDialog.isShowing) {
+        if (alertDialog != null && alertDialog?.isShowing!!) {
 
-            alertDialog.dismiss()
+            alertDialog?.dismiss()
         }
     }
 
@@ -154,14 +154,14 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
                     toolBarViewModel.init()
                 })
                 .build().getAlertDialog()
-        alertDialog.setCancelable(false)
+        alertDialog?.setCancelable(false)
         if (checkIsBoardFull()) {
-            alertDialog.setMessage("Match Drawn!")
+            alertDialog?.setMessage("Match Drawn!")
         } else {
-            alertDialog.setMessage("${toolBarViewModel.currentPlayer} won the game. Congratulations")
+            alertDialog?.setMessage("${toolBarViewModel.currentPlayer} won the game. Congratulations")
         }
 
-        alertDialog.show()
+        alertDialog?.show()
 
 
     }
