@@ -4,6 +4,7 @@ package com.tictactoe.views
 import android.content.DialogInterface
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import com.tictactoe.R
@@ -35,24 +36,39 @@ class GameAcivity : AppCompatActivity() {
         mPlayerNameInputDialogBinding.toolBar = mTicTacToeComponent.getToolBarViewModel()
 
 
-        var alertDialog: DialogHelper = DialogHelper.Builder()
-                .setContext(this)
-                .setPositiveButtonText("Add New Names")
-                .setNegativeButtonText("Use Default")
-                .setView(mPlayerNameInputDialogBinding.root)
-                .setPositiveClickListener(DialogInterface.OnClickListener { dialogInterface, i ->
-                    mAcivityBinding.toolBar?.currentPlayer = mPlayerNameInputDialogBinding.toolBar!!.player1
-                    mAcivityBinding.toolBar?.notifyChange()
-                    dialogInterface.dismiss()
-                })
-                .build()
+        if (savedInstanceState == null) {
+            val alertDialog: DialogHelper = DialogHelper.Builder()
+                    .setContext(this)
+                    .setPositiveButtonText("Add New Names")
+                    .setNegativeButtonText("Use Default")
+                    .setView(mPlayerNameInputDialogBinding.root)
+                    .setTitle("Player Details")
+                    .setHeight(1000)
+                    .setWidht(1000)
+                    .setPositiveClickListener(DialogInterface.OnClickListener { dialogInterface, i ->
+                        mAcivityBinding.toolBar?.currentPlayer = mPlayerNameInputDialogBinding.toolBar!!.player1
+                        mAcivityBinding.toolBar?.notifyChange()
+                        dialogInterface.dismiss()
+                    })
+                    .build()
 
 
-        alertDialog.getAlertDialog().show()
+            val alert = alertDialog.getAlertDialog()
+
+
+            alert.setCancelable(false)
+            alert.show()
+            alert.window.setLayout(alertDialog.dialogHeight, alertDialog.dialogWidth)
+        }
+
         mAcivityBinding.ticTacToeModel = mTicTacToeComponent.getViewModel()
         mAcivityBinding.toolBar = mPlayerNameInputDialogBinding.toolBar
         mAcivityBinding.ticTacToeObserver = mTicTacToeComponent.getTicTacToeObservable()
+        mAcivityBinding.setLifecycleOwner(this)
+        lifecycle.addObserver(mTicTacToeComponent.getTicTacToeObservable())
         Util.blinkAnimation(mAcivityBinding.currentPlayer, this)
 
     }
+
+
 }

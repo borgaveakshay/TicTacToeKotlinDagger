@@ -8,14 +8,18 @@ import android.view.View
 class DialogHelper private constructor() {
 
     private var layoutId: Int = 0
-    lateinit var dialogView: View
+    var dialogView: View? = null
     private var isPositiveButtonEnabled: Boolean = true
     private var isNegativeButtonEnabled: Boolean = true
-    private var positiveButtonText: String = "OK"
-    private var negativeButtonText: String = "Cancel"
+    private lateinit var positiveButtonText: String
+    private lateinit var negativeButtonText: String
     lateinit var context: Context
     lateinit var positiveButtonListener: DialogInterface.OnClickListener
     lateinit var negativeButtonListener: DialogInterface.OnClickListener
+    lateinit var dialogTitle: String
+    var dialogHeight: Int = 0
+    var dialogWidth: Int = 0
+
 
     private constructor(con: Context,
                         id: Int,
@@ -24,7 +28,10 @@ class DialogHelper private constructor() {
                         posButtonText: String,
                         negButtonText: String,
                         posOnClickListener: DialogInterface.OnClickListener,
-                        negOnClickListener: DialogInterface.OnClickListener) : this() {
+                        negOnClickListener: DialogInterface.OnClickListener,
+                        height: Int,
+                        width: Int,
+                        title: String) : this() {
 
         context = con
         layoutId = id
@@ -34,6 +41,9 @@ class DialogHelper private constructor() {
         negativeButtonText = negButtonText
         positiveButtonListener = posOnClickListener
         negativeButtonListener = negOnClickListener
+        dialogWidth = width
+        dialogHeight = height
+        dialogTitle = title
     }
 
     private constructor(con: Context,
@@ -43,7 +53,10 @@ class DialogHelper private constructor() {
                         posButtonText: String,
                         negButtonText: String,
                         posOnClickListener: DialogInterface.OnClickListener,
-                        negOnClickListener: DialogInterface.OnClickListener) : this() {
+                        negOnClickListener: DialogInterface.OnClickListener,
+                        height: Int,
+                        width: Int,
+                        title: String) : this() {
 
         context = con
         dialogView = view
@@ -53,6 +66,9 @@ class DialogHelper private constructor() {
         negativeButtonText = negButtonText
         positiveButtonListener = posOnClickListener
         negativeButtonListener = negOnClickListener
+        dialogHeight = height
+        dialogWidth = width
+        dialogTitle = title
     }
 
     fun getAlertDialog(): AlertDialog {
@@ -62,19 +78,27 @@ class DialogHelper private constructor() {
                     .setView(layoutId)
                     .setPositiveButton(positiveButtonText, positiveButtonListener)
                     .setNegativeButton(negativeButtonText, negativeButtonListener)
+                    .setTitle(dialogTitle)
                     .create()
-
-        return AlertDialog.Builder(context)
-                .setView(dialogView)
-                .setPositiveButton(positiveButtonText, positiveButtonListener)
-                .setNegativeButton(negativeButtonText, negativeButtonListener)
-                .create()
+        else if (dialogView != null)
+            return AlertDialog.Builder(context)
+                    .setView(dialogView)
+                    .setPositiveButton(positiveButtonText, positiveButtonListener)
+                    .setNegativeButton(negativeButtonText, negativeButtonListener)
+                    .setTitle(dialogTitle)
+                    .create()
+        else
+            return AlertDialog.Builder(context)
+                    .setPositiveButton(positiveButtonText, positiveButtonListener)
+                    .setNegativeButton(negativeButtonText, negativeButtonListener)
+                    .setTitle(dialogTitle)
+                    .create()
     }
 
     class Builder {
 
         private var layoutId: Int = 0
-        lateinit var dialogView: View
+        var dialogView: View? = null
         private var isPositiveButtonEnabled: Boolean = true
         private var isNegativeButtonEnabled: Boolean = true
         private var positiveButtonText: String = "OK"
@@ -82,6 +106,9 @@ class DialogHelper private constructor() {
         private lateinit var context: Context
         private var posDialogInterface: DialogInterface.OnClickListener = DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() }
         private var negDialogInterface: DialogInterface.OnClickListener = DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() }
+        private var dialogHeight: Int = 1000
+        private var dialogWidth: Int = 600
+        private lateinit var dialogTitle: String
 
         fun setLayoutId(id: Int) = apply {
             layoutId = id
@@ -125,18 +152,35 @@ class DialogHelper private constructor() {
             dialogView = view
         }
 
+        fun setHeight(height: Int) = apply {
+            dialogHeight = height
+        }
+
+        fun setWidht(width: Int) = apply {
+
+            dialogWidth = width
+        }
+
+        fun setTitle(title: String) = apply {
+            dialogTitle = title
+
+        }
+
         fun build(): DialogHelper {
 
             if (dialogView != null) {
 
                 return DialogHelper(context,
-                        dialogView,
+                        dialogView!!,
                         isPositiveButtonEnabled,
                         isNegativeButtonEnabled,
                         positiveButtonText,
                         negativeButtonText,
                         posDialogInterface,
-                        negDialogInterface)
+                        negDialogInterface,
+                        dialogHeight,
+                        dialogWidth,
+                        dialogTitle)
 
             }
 
@@ -147,7 +191,10 @@ class DialogHelper private constructor() {
                     positiveButtonText,
                     negativeButtonText,
                     posDialogInterface,
-                    negDialogInterface)
+                    negDialogInterface,
+                    dialogHeight,
+                    dialogWidth,
+                    dialogTitle)
 
 
         }

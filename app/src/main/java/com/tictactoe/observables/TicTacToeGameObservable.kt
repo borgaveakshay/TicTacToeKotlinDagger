@@ -1,8 +1,14 @@
 package com.tictactoe.observables
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.LifecycleOwner
+import android.arch.lifecycle.OnLifecycleEvent
+import android.content.DialogInterface
 import android.view.View
 import android.widget.Toast
 import com.tictactoe.R
+import com.tictactoe.Util.DialogHelper
 import com.tictactoe.util.Util
 import com.tictactoe.viewmodel.TicTacToeViewModel
 import com.tictactoe.viewmodel.ToolBarViewModel
@@ -10,8 +16,13 @@ import com.tictactoe.views.GameAcivity
 
 class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
                               , val activity: GameAcivity
-                              , val toolBarViewModel: ToolBarViewModel) {
+                              , val toolBarViewModel: ToolBarViewModel) : LifecycleObserver {
 
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    fun onResume() {
+        checkForWinAndReset()
+    }
 
     fun onClickAction(view: View) {
 
@@ -94,17 +105,22 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
 
             }
 
+            checkForWinAndReset()
             viewModel.notifyChange()
-            if (checkForWin()) {
-                resetGame()
-                Toast.makeText(activity, "Some one won the game", Toast.LENGTH_LONG).show()
-            }
+
         } else {
             resetGame()
-            Toast.makeText(activity, "Board is Full", Toast.LENGTH_LONG).show()
         }
 
 
+    }
+
+
+    private fun checkForWinAndReset() {
+        if (checkForWin()) {
+            resetGame()
+
+        }
     }
 
     fun flipAnimation(view: View) {
@@ -116,8 +132,26 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
 
     private fun resetGame() {
 
-        viewModel.init()
-        toolBarViewModel.init()
+        val alertDialog = DialogHelper.Builder()
+                .setContext(activity)
+                .setTitle("Game End")
+                .setHeight(600)
+                .setWidht(600)
+                .setPositiveButtonText("Start New Game")
+                .setPositiveClickListener(DialogInterface.OnClickListener { dialogInterface, i ->
+                    viewModel.init()
+                    toolBarViewModel.init()
+                })
+                .build().getAlertDialog()
+        alertDialog.setCancelable(false)
+        if (checkIsBoardFull()) {
+            alertDialog.setMessage("Match Drawn!")
+        } else {
+            alertDialog.setMessage("${toolBarViewModel.currentPlayer} won the game. Congratulations")
+        }
+
+        alertDialog.show()
+
     }
 
     private fun changePlayer() {
