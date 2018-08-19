@@ -2,11 +2,10 @@ package com.tictactoe.observables
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.OnLifecycleEvent
 import android.content.DialogInterface
+import android.support.v7.app.AlertDialog
 import android.view.View
-import android.widget.Toast
 import com.tictactoe.R
 import com.tictactoe.Util.DialogHelper
 import com.tictactoe.util.Util
@@ -19,10 +18,21 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
                               , val toolBarViewModel: ToolBarViewModel) : LifecycleObserver {
 
 
+    lateinit var alertDialog: AlertDialog
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume() {
         checkForWinAndReset()
     }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    fun onPause() {
+
+        if (alertDialog.isShowing) {
+
+            alertDialog.dismiss()
+        }
+    }
+
 
     fun onClickAction(view: View) {
 
@@ -132,7 +142,8 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
 
     private fun resetGame() {
 
-        val alertDialog = DialogHelper.Builder()
+
+        alertDialog = DialogHelper.Builder()
                 .setContext(activity)
                 .setTitle("Game End")
                 .setHeight(600)
@@ -151,6 +162,7 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
         }
 
         alertDialog.show()
+
 
     }
 

@@ -4,7 +4,6 @@ package com.tictactoe.views
 import android.content.DialogInterface
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import com.tictactoe.R
@@ -48,6 +47,9 @@ class GameAcivity : AppCompatActivity() {
                     .setPositiveClickListener(DialogInterface.OnClickListener { dialogInterface, i ->
                         mAcivityBinding.toolBar?.currentPlayer = mPlayerNameInputDialogBinding.toolBar!!.player1
                         mAcivityBinding.toolBar?.notifyChange()
+                        dialogInterface.dismiss()
+                    })
+                    .setNegitiveClickListener(DialogInterface.OnClickListener { dialogInterface, i ->
                         dialogInterface.dismiss()
                     })
                     .build()
