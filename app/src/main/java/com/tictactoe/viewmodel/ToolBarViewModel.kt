@@ -2,8 +2,11 @@ package com.tictactoe.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.databinding.Bindable
+import android.databinding.BindingAdapter
 import android.databinding.Observable
 import android.databinding.PropertyChangeRegistry
+import android.text.Editable
+import android.text.TextWatcher
 import com.tictactoe.dependencies.components.DaggerTicTacToeToolBarComponent
 import com.tictactoe.dependencies.components.TicTacToeToolBarComponent
 import javax.inject.Inject
