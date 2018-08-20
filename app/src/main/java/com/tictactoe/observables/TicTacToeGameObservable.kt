@@ -42,14 +42,16 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
                 R.id.firstRowFirstCol -> {
                     if (isPositionAvailable(viewModel.fistRowFistColumn.get())) {
                         viewModel.fistRowFistColumn.set(viewModel.currentPlayer.get())
-                        flipAnimation(view)
+                        checkForWinAndReset()
                         changePlayer()
+                        flipAnimation(view)
                     }
 
                 }
                 R.id.firstRowSecondCol -> {
                     if (isPositionAvailable(viewModel.fistRowSecondColumn.get())) {
                         viewModel.fistRowSecondColumn.set(viewModel.currentPlayer.get())
+                        checkForWinAndReset()
                         changePlayer()
                         flipAnimation(view)
                     }
@@ -58,6 +60,7 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
 
                     if (isPositionAvailable(viewModel.fistRowThirdColumn.get())) {
                         viewModel.fistRowThirdColumn.set(viewModel.currentPlayer.get())
+                        checkForWinAndReset()
                         changePlayer()
                         flipAnimation(view)
                     }
@@ -66,6 +69,7 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
                 R.id.secondRowFirstCol -> {
                     if (isPositionAvailable(viewModel.secondRowFirstColumn.get())) {
                         viewModel.secondRowFirstColumn.set(viewModel.currentPlayer.get())
+                        checkForWinAndReset()
                         changePlayer()
                         flipAnimation(view)
                     }
@@ -74,6 +78,7 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
                 R.id.secondRowSecondCol -> {
                     if (isPositionAvailable(viewModel.secondRowSecondColumn.get())) {
                         viewModel.secondRowSecondColumn.set(viewModel.currentPlayer.get())
+                        checkForWinAndReset()
                         changePlayer()
                         flipAnimation(view)
                     }
@@ -82,6 +87,7 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
                 R.id.secondRowThirdCol -> {
                     if (isPositionAvailable(viewModel.secondRowThirdColumn.get())) {
                         viewModel.secondRowThirdColumn.set(viewModel.currentPlayer.get())
+                        checkForWinAndReset()
                         changePlayer()
                         flipAnimation(view)
                     }
@@ -91,6 +97,7 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
 
                     if (isPositionAvailable(viewModel.thirdRowFirstColumn.get())) {
                         viewModel.thirdRowFirstColumn.set(viewModel.currentPlayer.get())
+                        checkForWinAndReset()
                         changePlayer()
                         flipAnimation(view)
                     }
@@ -99,6 +106,7 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
                 R.id.thirdRowSecondCol -> {
                     if (isPositionAvailable(viewModel.thirdRowSecondColumn.get())) {
                         viewModel.thirdRowSecondColumn.set(viewModel.currentPlayer.get())
+                        checkForWinAndReset()
                         changePlayer()
                         flipAnimation(view)
                     }
@@ -107,6 +115,7 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
                 R.id.thirdRowThirdCol -> {
                     if (isPositionAvailable(viewModel.thirdRowThirdColumn.get())) {
                         viewModel.thirdRowThirdColumn.set(viewModel.currentPlayer.get())
+                        checkForWinAndReset()
                         changePlayer()
                         flipAnimation(view)
                     }
@@ -114,8 +123,6 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
                 }
 
             }
-
-            checkForWinAndReset()
             viewModel.notifyChange()
 
         } else {

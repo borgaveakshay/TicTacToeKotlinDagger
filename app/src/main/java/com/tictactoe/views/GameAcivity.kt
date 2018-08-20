@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
+import android.widget.Toast
 import com.tictactoe.R
 import com.tictactoe.Util.DialogHelper
 import com.tictactoe.databinding.ActivityGameAcivityBinding
@@ -45,9 +46,14 @@ class GameAcivity : AppCompatActivity() {
                     .setHeight(1000)
                     .setWidht(1000)
                     .setPositiveClickListener(DialogInterface.OnClickListener { dialogInterface, i ->
-                        mAcivityBinding.toolBar?.currentPlayer = mPlayerNameInputDialogBinding.toolBar!!.player1
-                        mAcivityBinding.toolBar?.notifyChange()
-                        dialogInterface.dismiss()
+                        if (!mPlayerNameInputDialogBinding.toolBar?.player1.isNullOrEmpty() && !mPlayerNameInputDialogBinding.toolBar?.player2.isNullOrEmpty()) {
+                            mAcivityBinding.toolBar?.currentPlayer = mPlayerNameInputDialogBinding.toolBar!!.player1
+                            mAcivityBinding.toolBar?.notifyChange()
+                            dialogInterface.dismiss()
+                        } else {
+                            Toast.makeText(this@GameAcivity, "Player names can not be empty", Toast.LENGTH_LONG).show()
+                            return@OnClickListener
+                        }
                     })
                     .setNegitiveClickListener(DialogInterface.OnClickListener { dialogInterface, i ->
                         dialogInterface.dismiss()
