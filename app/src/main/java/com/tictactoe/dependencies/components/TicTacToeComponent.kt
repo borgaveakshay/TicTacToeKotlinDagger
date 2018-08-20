@@ -2,6 +2,7 @@ package com.tictactoe.dependencies.components
 
 import com.tictactoe.dependencies.modules.TicTacToeModule
 import com.tictactoe.dependencies.scopes.TicTacToeScope
+import com.tictactoe.observables.PlayerDetailsDialog
 import com.tictactoe.observables.TicTacToeGameObservable
 import com.tictactoe.viewmodel.TicTacToeViewModel
 import com.tictactoe.viewmodel.ToolBarViewModel
@@ -16,4 +17,5 @@ interface TicTacToeComponent {
     fun getGameActivity(): GameAcivity
     fun getViewModel(): TicTacToeViewModel
     fun getTicTacToeObservable(): TicTacToeGameObservable
+    fun getPlayerDetailDialog(): PlayerDetailsDialog
 }

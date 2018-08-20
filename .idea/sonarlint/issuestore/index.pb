@@ -86,9 +86,17 @@ Tapp/src/main/java/com/tictactoe/dependencies/components/TicTacToeToolBarCompone
 Lapp/src/main/java/com/tictactoe/dependencies/scopes/TicTacToeToolBarScope.kt,8\4\84c62319b1466d2f56e148501ca66a469806eced
 m
 =app/src/main/java/com/tictactoe/viewmodel/ToolBarViewModel.kt,f\d\fd3686d97956f348221a49d922b8c46631bc48a0
-i
-9fastlane/api-6601028951954639200-413315-0857248f0980.json,3\d\3d45477f05534c2127cca26702954be2f8a90326
 Z
 *app/src/main/res/layout/toolbar_layout.xml,f\3\f32481acc7dae37a45c965ec2d541f7188380647
 @
 fastlane/Appfile,d\d\ddf39850cdaab54b2acc5d5d2ed28021943024ad
+~
+Napp/src/main/java/com/tictactoe/dependencies/modules/ToolBarViewModelModule.kt,c\c\ccc528c9b8f61de331ede06d92d996130c38579c
+O
+app/src/main/res/anim/blink.xml,f\2\f28388e69eec121fc32f8cb78e874ac3b41dd6fb
+d
+4app/src/main/res/layout/player_name_input_dialog.xml,9\0\90b22a29b8a26c7ca8e38d6d809b657738d7e630
+d
+4app/src/main/java/com/tictactoe/util/DialogHelper.kt,4\d\4dedffb8b13a40af51d9f7d49a202d1c654d3464
+r
+Bapp/src/main/java/com/tictactoe/observables/PlayerDetailsDialog.kt,6\b\6b4404607315a4f451a24fb1ed36ad8e0371a701
