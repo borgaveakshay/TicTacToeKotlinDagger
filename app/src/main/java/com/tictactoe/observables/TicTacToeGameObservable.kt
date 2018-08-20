@@ -137,6 +137,8 @@ class TicTacToeGameObservable(val viewModel: TicTacToeViewModel
         if (checkForWin()) {
             resetGame()
 
+        } else if (checkIsBoardFull()) {
+            resetGame()
         }
     }
 
