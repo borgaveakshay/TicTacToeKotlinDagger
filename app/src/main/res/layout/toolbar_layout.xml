@@ -7,7 +7,7 @@
 
         <variable
             name="toolBar"
-            type="com.tictactoe.viewmodel.ToolBarViewModel" />
+            type="com.aki.viewmodel.ToolBarViewModel" />
 
     </data>
 

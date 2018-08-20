@@ -7,15 +7,15 @@
 
         <variable
             name="ticTacToeModel"
-            type="com.tictactoe.viewmodel.TicTacToeViewModel" />
+            type="com.aki.viewmodel.TicTacToeViewModel" />
 
         <variable
             name="ticTacToeObserver"
-            type="com.tictactoe.observables.TicTacToeGameObservable" />
+            type="com.aki.observables.TicTacToeGameObservable" />
 
         <variable
             name="toolBar"
-            type="com.tictactoe.viewmodel.ToolBarViewModel" />
+            type="com.aki.viewmodel.ToolBarViewModel" />
 
     </data>
 
